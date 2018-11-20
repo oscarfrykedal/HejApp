@@ -20,21 +20,23 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
 
+
+
     private Button buttonLogin;
-    private EditText editTextEmail;
-    private EditText editTextPassWord;
+    EditText email;
+    EditText passWord;
     private TextView textViewSignUp;
 
     private ProgressDialog progressDialog;
 
-    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         //if (firebaseAuth.getCurrentUser() != null){
         //    //mainActivity
@@ -44,16 +46,43 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressDialog = new ProgressDialog(this);
 
         buttonLogin = findViewById(R.id.buttonLogin);
-        editTextEmail = findViewById(R.id.editTextEmail);
-        editTextPassWord = findViewById(R.id.editTextPass);
+        email = findViewById(R.id.editTextEmail);
+        passWord = findViewById(R.id.editTextPass);
         textViewSignUp = findViewById(R.id.textViewSignUp);
 
         buttonLogin.setOnClickListener(this);
         textViewSignUp.setOnClickListener(this);
 
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String txt_email = email.getText().toString();
+                String txt_password = passWord.getText().toString();
+
+                if (TextUtils.isEmpty(txt_email)| TextUtils.isEmpty(txt_password)){
+                    Toast.makeText(LoginActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
+                }else{
+
+                    auth.signInWithEmailAndPassword(txt_email, txt_password)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()){
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
+                                        finish();
+                                    }else{
+                                        Toast.makeText(LoginActivity.this, "authentication failed, please try again", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                }
+            }
+        });
     }
 
-    private void UserLogin(){
+/*    private void UserLogin(){
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassWord.getText().toString().trim();
 
@@ -70,7 +99,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressDialog.setMessage("Logging in...");
         progressDialog.show();
 
-        firebaseAuth.signInWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -82,12 +111,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                 });
 
-    }
+    }*/
 
     @Override
     public void onClick(View view) {
         if(view == buttonLogin){
-            UserLogin();
+
         }
 
         if (view == textViewSignUp){

@@ -13,97 +13,121 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.lang.ref.Reference;
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
 
+
     private Button buttonRegister;
-    private EditText editTextEmail;
-    private EditText editTextPassWord;
+    private EditText username, email, passWord;
     private TextView textViewSignIn;
 
     private ProgressDialog progressDialog;
 
-    private FirebaseAuth firebaseAuth;
+    FirebaseAuth auth;
+    DatabaseReference reference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+/*        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Register");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+
         Log.d("oscar ", "oscar" );
-        firebaseAuth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
 
         progressDialog = new ProgressDialog(this);
 
         buttonRegister = findViewById(R.id.buttonRegister);
-        editTextEmail = findViewById(R.id.editTextEmail);
-        editTextPassWord = findViewById(R.id.editTextPass);
+        email = findViewById(R.id.editTextEmail);
+        passWord = findViewById(R.id.editTextPass);
         textViewSignIn = findViewById(R.id.textViewSignIn);
-
-        buttonRegister.setOnClickListener(this);
+        username = findViewById(R.id.editTextUser);
         textViewSignIn.setOnClickListener(this);
 
 
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String txt_username = username.getText().toString();
+                String txt_email = email.getText().toString();
+                String txt_password = passWord.getText().toString();
+
+                if (TextUtils.isEmpty(txt_username) || TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)){
+                    Toast.makeText(RegisterActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
+                }else if(txt_password.length() < 6){
+                    Toast.makeText(RegisterActivity.this, "Password is too short, must be at least 6 characters", Toast.LENGTH_SHORT).show();
+                }else{
+                    register(txt_username, txt_email, txt_password);
+                }
+            }
+        });
+
+
+
     }
 
-    private void moveToMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
+    private void register(final String username, String email, String password){
 
-
-    private void moveToLoginActivity(){
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-
-
-    private void registerUser() {
-        String email = editTextEmail.getText().toString().trim();
-        String password = editTextPassWord.getText().toString().trim();
-
-        if (TextUtils.isEmpty(email)) {
-            Toast.makeText(this, "please enter your email", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "please enter your password", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        //if validation is ok
-        progressDialog.setMessage("Registering User...");
-        progressDialog.show();
-
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            //user is succesfully registered and logged in
-                            //start next activity
-                            finish();
-                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                        }else{
-                            Log.d( "oscar ", "no sucess.." );
-                            Toast.makeText(RegisterActivity.this, "Registered Failed, please try again", Toast.LENGTH_SHORT).show();
+                            FirebaseUser firebaseUser = auth.getCurrentUser();
+                            assert firebaseUser != null;
+                            String userid = firebaseUser.getUid();
 
+                            reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+
+                            HashMap<String, String> hashMap = new HashMap<>();
+                            hashMap.put("id", userid);
+                            hashMap.put("username", username);
+                            hashMap.put("imageURL", "default");
+
+                            reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
+                                        //finish();
+                                    }
+                                }
+                            });
+                        }else{
+                            Toast.makeText(RegisterActivity.this, "Enter another email or password", Toast.LENGTH_SHORT).show();
                         }
-                        progressDialog.dismiss();
                     }
                 });
     }
 
+
+
+
+
     @Override
     public void onClick(View view) {
         if(view == buttonRegister){
-            registerUser();
+            //register(username.toString(), email.toString(), passWord.toString() );
         }
 
         if (view == textViewSignIn){

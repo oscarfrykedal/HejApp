@@ -31,6 +31,13 @@
                 tools:layout_editor_absoluteY="63dp" />
 
             <EditText
+                android:id="@+id/editTextUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="Enter username"
+                android:inputType="textEmailAddress" />
+            <EditText
                 android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
