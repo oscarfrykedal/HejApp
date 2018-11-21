@@ -19,7 +19,7 @@ public class UserActivity extends AppCompatActivity {
     }
 
 
-    public boolean onTouchEvent(MotionEvent touchEvent){
+/*    public boolean onTouchEvent(MotionEvent touchEvent){
         switch(touchEvent.getAction()){
             case MotionEvent.ACTION_DOWN:
                 x1 = touchEvent.getX();
@@ -35,6 +35,6 @@ public class UserActivity extends AppCompatActivity {
                 break;
         }
         return false;
-    }
+    }*/
 
 }

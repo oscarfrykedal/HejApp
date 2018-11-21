@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Toolbar toolbar;
 
-    float x1,x2,y1,y2;
+    //float x1,x2,y1,y2;
 
     CircleImageView profile_image;
     TextView username;
@@ -81,13 +81,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            /*User user = dataSnapshot.getValue(User.class);
-            username.setText(user.getUsername());
-            if (user.getImageUrl().equals("default")){
+            User user = dataSnapshot.getValue(User.class);
+                assert user != null;
+                username.setText(user.getUsername());
+            if (user.getImageURL().equals("default")){
                 profile_image.setImageResource(R.mipmap.ic_launcher);
             }else{
-                Glide.with(MainActivity.this).load(user.getImageUrl()).into(profile_image);
-            }*/
+                Glide.with(MainActivity.this).load(user.getImageURL()).into(profile_image);
+            }
             }
 
             @Override
@@ -139,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }*/
 
-    public boolean onTouchEvent(MotionEvent touchEvent){
+/*    public boolean onTouchEvent(MotionEvent touchEvent){
         switch(touchEvent.getAction()){
             case MotionEvent.ACTION_DOWN:
                 x1 = touchEvent.getX();
@@ -155,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             break;
         }
         return false;
-    }
+    }*/
 
 
     @Override

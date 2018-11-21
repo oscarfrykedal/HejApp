@@ -1,4 +1,4 @@
-package com.example.oscar.hej;
+package com.example.oscar.hej.Adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.oscar.hej.R;
+import com.example.oscar.hej.User;
 
 import java.util.List;
 
@@ -38,10 +40,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         User user = mUser.get(position);
         holder.username.setText(user.getUsername());
-        if (user.getImageUrl().equals("default")){
+        if (user.getImageURL().equals("default")){
             holder.profile_image.setImageResource(R.mipmap.ic_launcher);
         }else{
-            Glide.with(mContext).load(user.getImageUrl()).into(holder.profile_image);
+            Glide.with(mContext).load(user.getImageURL()).into(holder.profile_image);
         }
 
     }
