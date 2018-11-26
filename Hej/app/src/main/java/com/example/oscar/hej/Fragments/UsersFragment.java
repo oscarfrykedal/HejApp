@@ -46,7 +46,7 @@ public class UsersFragment extends Fragment {
 
         mUser = new ArrayList<>();
 
-        //readUsers();
+        readUsers();
 
 
         return view;

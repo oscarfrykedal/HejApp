@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Toolbar toolbar;
 
-    //float x1,x2,y1,y2;
 
     CircleImageView profile_image;
     TextView username;
@@ -58,9 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
 
-/*        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");*/
+        getSupportActionBar().setTitle("");
 
 
         firebaseAuth = FirebaseAuth.getInstance();
