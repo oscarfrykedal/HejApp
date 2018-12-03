@@ -52,9 +52,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimaryDark"
-                app:tabSelectedTextColor="@color/colorPrimaryDark"
+                app:tabSelectedTextColor="#fff"
                 app:tabIndicatorColor="@color/colorPrimaryDark"
-                app:tabTextColor="#fff"/>
+                />
 
 
             <android.support.v4.view.ViewPager

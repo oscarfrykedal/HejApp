@@ -34,15 +34,16 @@ package com.example.oscar.hej;
 
         import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity{
 
     private FirebaseAuth firebaseAuth;
 
     private TextView textViewUserEmail;
-    private Button logoutButton;
+
 
     Toolbar toolbar;
 
+    Button button;
 
     CircleImageView profile_image;
     TextView username;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
+
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -115,59 +117,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        logoutButton = findViewById(R.id.LogoutButton);
-
-        logoutButton.setOnClickListener(this);
 
 
-/*        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {NewNote();
-
-
-
-            }
-        });*/
     }
 
     //END OF CREATE
 
 
-/*    public void NewNote(){
-        Intent intent = new Intent(this, NoteActivity.class);
-        startActivity(intent);
-    }*/
-
-/*    public boolean onTouchEvent(MotionEvent touchEvent){
-        switch(touchEvent.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                x1 = touchEvent.getX();
-                y1 = touchEvent.getY();
-                break;
-            case MotionEvent.ACTION_UP:
-                x2 = touchEvent.getX();
-                y2 = touchEvent.getY();
-                if(x1 > x2){
-                Intent i = new Intent(MainActivity.this, UserActivity.class);
-                startActivity(i);
-            }
-            break;
-        }
-        return false;
-    }*/
-
-
-    @Override
-    public void onClick(View v) {
-
-        if (v == logoutButton){
-            firebaseAuth.signOut();
-            finish();
-            startActivity(new Intent(this, LoginActivity.class));
-        }
-
-    }
 
     class ViewPagerAdapter extends FragmentPagerAdapter{
 
