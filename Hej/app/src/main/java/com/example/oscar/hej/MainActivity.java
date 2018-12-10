@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity{
 
     Toolbar toolbar;
 
-    Button button;
-
     CircleImageView profile_image;
     TextView username;
 

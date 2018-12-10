@@ -14,6 +14,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="chatname"
+        android:id="@+id/chatname"
+        android:layout_toRightOf="@id/profile_image"
+        android:layout_toEndOf="@id/profile_image"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        android:textSize="18sp"/>
+
+
+    <TextView
+        android:layout_alignLeft="@+id/chatname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="username"
         android:id="@+id/username"
         android:layout_toRightOf="@id/profile_image"
@@ -22,14 +35,6 @@
         android:layout_centerVertical="true"
         android:textSize="18sp"/>
 
-    <Switch
-        android:id="@+id/switch2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_toRightOf="@id/username"
-        android:layout_alignParentEnd="true"
-
-        />
 
 
 </RelativeLayout>

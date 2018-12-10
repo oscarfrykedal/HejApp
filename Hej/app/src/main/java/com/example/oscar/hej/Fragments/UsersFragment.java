@@ -8,10 +8,14 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.oscar.hej.Adapter.UserAdapter;
 import com.example.oscar.hej.LoginActivity;
@@ -36,7 +40,7 @@ public class UsersFragment extends Fragment {
     private UserAdapter userAdapter;
     private List<User> mUser;
 
-    private Button logoutButton;
+    //Switch aSwitch;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,9 +55,6 @@ public class UsersFragment extends Fragment {
         mUser = new ArrayList<>();
 
         readUsers();
-
-        logoutButton =  view.findViewById(R.id.LogoutButton);
-
 
 
         return view;
@@ -91,11 +92,17 @@ public class UsersFragment extends Fragment {
         });
     }
 /*
-    @Override
-    public void onClick(View v) {
-        if (v == logoutButton){
-            startActivity(new Intent(UsersFragment.this, LoginActivity.class));
+    aSwitch = view.findViewById(R.id.switch2);
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+            if (isChecked == true){
+                Log.d("oscar ", "Switch on" );
+            }else{
+                Log.d("oscar ", "Switch off" );
+            }
 
         }
-    }*/
+    });*/
 }
