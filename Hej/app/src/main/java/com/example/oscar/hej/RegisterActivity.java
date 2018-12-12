@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         getSupportActionBar().setTitle("Register");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
 
-        Log.d("oscar ", "oscar" );
+
         auth = FirebaseAuth.getInstance();
 
 
@@ -60,6 +60,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         passWord = findViewById(R.id.editTextPass);
         textViewSignIn = findViewById(R.id.textViewSignIn);
         username = findViewById(R.id.editTextUser);
+
+
         textViewSignIn.setOnClickListener(this);
 
 
@@ -91,6 +93,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+                            Log.d("oscar ", "oscar" );
                             FirebaseUser firebaseUser = auth.getCurrentUser();
                             assert firebaseUser != null;
                             String userid = firebaseUser.getUid();
@@ -106,6 +109,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()){
+
                                         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent);

@@ -13,8 +13,10 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.oscar.hej.Adapter.UserAdapter;
@@ -34,32 +36,43 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 
 public class GroupChatsFragment extends Fragment {
 
     private FloatingActionButton fab;
+    private Button logoutButton;
+    //private RecyclerView recyclerView;
+    private ListView listView;
 
-    Button logoutButton;
-
-    private RecyclerView recyclerView;
-
-    private UserAdapter userAdapter;
-    private List<User> mUser;
+    private View groupFragmentView;
+    private ArrayAdapter<String> arrayAdapter;
+    private ArrayList<String> list_of_groups = new ArrayList<>();
 
     FirebaseUser fuser;
-    DatabaseReference reference;
+    DatabaseReference GroupReference;
 
     private List<String> userList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_groupchats,container, false);
 
-        logoutButton = view.findViewById(R.id.button1);
+        groupFragmentView = inflater.inflate(R.layout.fragment_groupchats,container, false);
+
+        GroupReference = FirebaseDatabase.getInstance().getReference().child("Groups");
+
+
+
+        InitializeFields();
+
+        RetrieveDisplayGroups();
+
+        logoutButton = groupFragmentView.findViewById(R.id.button1);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +81,7 @@ public class GroupChatsFragment extends Fragment {
             }
         });
 
-        fab = view.findViewById(R.id.fab);
+        fab = groupFragmentView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,9 +91,9 @@ public class GroupChatsFragment extends Fragment {
         });
 
 
-        recyclerView = view.findViewById(R.id.recycler_view);
+        /*recyclerView = groupFragmentView.findViewById(R.id.recycler_view_groups);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));*/
 
         fuser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -89,8 +102,45 @@ public class GroupChatsFragment extends Fragment {
 
 
 
-        return view;
+        return groupFragmentView;
     }
+
+
+    private void InitializeFields()
+    {
+        listView = groupFragmentView.findViewById(R.id.list_view);
+        arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, list_of_groups);
+        listView.setAdapter(arrayAdapter);
+    }
+
+    private void RetrieveDisplayGroups()
+    {
+        GroupReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Set<String> set = new HashSet<>();
+                Iterator iterator = dataSnapshot.getChildren().iterator();
+
+                while(iterator.hasNext())
+                {
+                    set.add(((DataSnapshot)iterator.next()).getKey());
+                }
+
+                list_of_groups.clear();
+                list_of_groups.addAll(set);
+                arrayAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
 
     private void RequestNewGroup() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialog);
@@ -131,9 +181,9 @@ public class GroupChatsFragment extends Fragment {
 
     private void CreateNewGroup(final String groupName)
     {
-        reference = FirebaseDatabase.getInstance().getReference("Groups");
+        GroupReference = FirebaseDatabase.getInstance().getReference("Groups");
 
-        reference.child(groupName).setValue("")
+        GroupReference.child(groupName).setValue("")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
