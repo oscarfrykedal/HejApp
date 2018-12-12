@@ -15,37 +15,15 @@
 
 
 
+            <include
+                android:id="@+id/main_page_toolbar"
+                layout="@layout/app_bar_layout">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="@color/colorPrimaryDark"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
+            </include>
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:id="@+id/profile_image"/>
-                <TextView
-                    android:id="@+id/textViewUserEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="21dp"
-                    android:text=""
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="0dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/username"
-                    android:layout_marginLeft="25dp"
 
-                    android:textColor="#fff"
-                    android:textStyle="bold"
-                    android:layout_marginStart="25dp"
-                    tools:ignore="RtlHardcoded" />
 
-            </android.support.v7.widget.Toolbar>
+
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tab_layout"

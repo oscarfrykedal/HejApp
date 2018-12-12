@@ -7,24 +7,20 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.oscar.hej.Adapter.UserAdapter;
-import com.example.oscar.hej.Chat;
+import com.example.oscar.hej.GroupChatActivity;
 import com.example.oscar.hej.LoginActivity;
-import com.example.oscar.hej.NewChat;
 import com.example.oscar.hej.R;
-import com.example.oscar.hej.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -71,6 +67,18 @@ public class GroupChatsFragment extends Fragment {
         InitializeFields();
 
         RetrieveDisplayGroups();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                String currentGroupName = parent.getItemAtPosition(position).toString();
+
+                Intent groupChatIntent = new Intent(getContext(), GroupChatActivity.class);
+                groupChatIntent.putExtra("groupName", currentGroupName);
+                startActivity(groupChatIntent);
+            }
+        });
 
         logoutButton = groupFragmentView.findViewById(R.id.button1);
         logoutButton.setOnClickListener(new View.OnClickListener() {

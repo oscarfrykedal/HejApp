@@ -1,21 +1,16 @@
 package com.example.oscar.hej.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.oscar.hej.Adapter.UserAdapter;
 import com.example.oscar.hej.Chat;
-import com.example.oscar.hej.LoginActivity;
-import com.example.oscar.hej.NewChat;
 import com.example.oscar.hej.R;
 import com.example.oscar.hej.User;
 import com.google.firebase.auth.FirebaseAuth;

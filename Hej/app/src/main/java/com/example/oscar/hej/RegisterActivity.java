@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button buttonRegister;
     private EditText username, email, passWord;
     private TextView textViewSignIn;
+    private Toolbar toolbar;
 
     private ProgressDialog progressDialog;
 
@@ -44,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-/*        Toolbar toolbar = findViewById(R.id.toolbar);
+/*         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Register");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/

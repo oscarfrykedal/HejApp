@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity{
 
     private TextView textViewUserEmail;
 
+    private Toolbar mToolbar;
 
     Toolbar toolbar;
 
@@ -57,9 +58,10 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
+
+        mToolbar = findViewById(R.id.main_page_toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Hej ");
 
 
 
@@ -112,9 +114,9 @@ public class MainActivity extends AppCompatActivity{
         tabLayout.setupWithViewPager(viewPager);
 
 
-        textViewUserEmail = findViewById(R.id.textViewUserEmail);
+        //textViewUserEmail = findViewById(R.id.textViewUserEmail);
 
-        textViewUserEmail.setText("Welcome " + user.getEmail());
+        //textViewUserEmail.setText("Welcome " + user.getEmail());
 
 
 

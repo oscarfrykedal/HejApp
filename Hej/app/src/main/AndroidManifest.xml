@@ -22,7 +22,7 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MessageActivity" />
-        <activity android:name=".NewChat"></activity>
+        <activity android:name=".GroupChatActivity"></activity>
     </application>
 
 </manifest>
