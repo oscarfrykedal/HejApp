@@ -1,10 +1,7 @@
 package com.example.oscar.hej.Fragments;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -16,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.oscar.hej.Adapter.UserAdapter;
+import com.example.oscar.hej.Chat;
 import com.example.oscar.hej.LoginActivity;
 import com.example.oscar.hej.NewChat;
 import com.example.oscar.hej.R;
@@ -34,8 +32,7 @@ import java.util.List;
 
 public class ChatsFragment extends Fragment {
 
-    private FloatingActionButton fab;
-    private Button button;
+
 
     private RecyclerView recyclerView;
 
@@ -53,23 +50,7 @@ public class ChatsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_chats,container, false);
 
-        button = view.findViewById(R.id.button1);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
 
-        fab = view.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), NewChat.class);
-                startActivity(intent);
-            }
-        });
 
 
         recyclerView = view.findViewById(R.id.recycler_view);

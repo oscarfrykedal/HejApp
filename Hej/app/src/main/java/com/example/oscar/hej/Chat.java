@@ -1,4 +1,4 @@
-package com.example.oscar.hej.Fragments;
+package com.example.oscar.hej;
 
 public class Chat {
 

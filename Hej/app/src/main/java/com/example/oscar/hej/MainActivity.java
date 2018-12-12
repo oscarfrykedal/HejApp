@@ -20,6 +20,7 @@ package com.example.oscar.hej;
 
         import com.bumptech.glide.Glide;
         import com.example.oscar.hej.Fragments.ChatsFragment;
+        import com.example.oscar.hej.Fragments.GroupChatsFragment;
         import com.example.oscar.hej.Fragments.UsersFragment;
         import com.google.firebase.auth.FirebaseAuth;
         import com.google.firebase.auth.FirebaseUser;
@@ -101,8 +102,10 @@ public class MainActivity extends AppCompatActivity{
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
+        viewPagerAdapter.addFragment(new GroupChatsFragment(),"GroupChats");
         viewPagerAdapter.addFragment(new ChatsFragment(), "Chats");
         viewPagerAdapter.addFragment(new UsersFragment(),"Users");
+
 
         viewPager.setAdapter((viewPagerAdapter));
 

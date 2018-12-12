@@ -1,7 +1,6 @@
 package com.example.oscar.hej.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,11 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.example.oscar.hej.Fragments.Chat;
-import com.example.oscar.hej.MessageActivity;
+import com.example.oscar.hej.Chat;
 import com.example.oscar.hej.R;
-import com.example.oscar.hej.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

@@ -1,7 +1,6 @@
 package com.example.oscar.hej;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,9 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.oscar.hej.Adapter.MessageAdapter;
-import com.example.oscar.hej.Fragments.Chat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
