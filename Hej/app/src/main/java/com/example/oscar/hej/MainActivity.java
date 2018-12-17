@@ -13,6 +13,8 @@ package com.example.oscar.hej;
         import android.support.v4.view.ViewPager;
         import android.support.v7.app.AppCompatActivity;
         import android.support.v7.widget.Toolbar;
+        import android.view.Menu;
+        import android.view.MenuItem;
         import android.view.MotionEvent;
         import android.view.View;
         import android.widget.Button;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity{
 
     FirebaseUser firebaseUser;
     DatabaseReference reference;
+    FirebaseAuth mAuth;
 
 
     @Override
@@ -63,7 +66,8 @@ public class MainActivity extends AppCompatActivity{
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Hej ");
 
-
+        mAuth = FirebaseAuth.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
 
         firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() == null){
@@ -161,4 +165,32 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        super.onCreateOptionsMenu(menu);
+
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+         super.onOptionsItemSelected(item);
+
+        if (item.getItemId() == R.id.menu_settings);
+        {
+
+        }
+        if (item.getItemId() == R.id.menu_logout);
+        {
+            mAuth.signOut();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
+        return true;
+    }
 }

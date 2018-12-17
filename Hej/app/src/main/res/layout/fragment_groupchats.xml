@@ -36,12 +36,6 @@
             android:layout_margin="@dimen/fab_margin"
             app:srcCompat="@android:drawable/ic_dialog_dialer" />
 
-        <Button
-            android:text="Logout"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_centerInParent="true"
-            android:id="@+id/button1"/>
     </RelativeLayout>
 
 </RelativeLayout>

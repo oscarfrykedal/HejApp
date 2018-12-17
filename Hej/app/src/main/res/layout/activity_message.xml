@@ -6,19 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".MessageActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/bar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+        <include
+            android:id="@+id/toolbar_group_chat"
+            layout="@layout/app_bar_layout"
+            >
+
+        </include>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="30dp"
@@ -35,16 +30,14 @@
                 android:layout_marginStart="25dp"
                 tools:ignore="RtlHardcoded" />
 
-        </android.support.v7.widget.Toolbar>
 
 
-    </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recycler_view"
-        android:layout_below="@+id/bar_layout"
+        android:layout_below="@+id/toolbar_group_chat"
         android:layout_above="@+id/bottom"/>
 
 

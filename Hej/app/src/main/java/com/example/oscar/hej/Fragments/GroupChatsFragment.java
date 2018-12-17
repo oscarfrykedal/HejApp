@@ -41,7 +41,7 @@ import java.util.Set;
 public class GroupChatsFragment extends Fragment {
 
     private FloatingActionButton fab;
-    private Button logoutButton;
+    //private Button logoutButton;
     //private RecyclerView recyclerView;
     private ListView listView;
 
@@ -80,14 +80,14 @@ public class GroupChatsFragment extends Fragment {
             }
         });
 
-        logoutButton = groupFragmentView.findViewById(R.id.button1);
+        /*logoutButton = groupFragmentView.findViewById(R.id.button1);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         fab = groupFragmentView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -98,10 +98,6 @@ public class GroupChatsFragment extends Fragment {
             }
         });
 
-
-        /*recyclerView = groupFragmentView.findViewById(R.id.recycler_view_groups);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));*/
 
         fuser = FirebaseAuth.getInstance().getCurrentUser();
 

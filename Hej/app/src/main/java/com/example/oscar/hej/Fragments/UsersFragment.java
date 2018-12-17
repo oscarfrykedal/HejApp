@@ -91,18 +91,5 @@ public class UsersFragment extends Fragment {
             }
         });
     }
-/*
-    aSwitch = view.findViewById(R.id.switch2);
-        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-            if (isChecked == true){
-                Log.d("oscar ", "Switch on" );
-            }else{
-                Log.d("oscar ", "Switch off" );
-            }
-
-        }
-    });*/
 }
