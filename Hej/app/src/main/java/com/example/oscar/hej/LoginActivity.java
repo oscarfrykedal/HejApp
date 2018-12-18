@@ -115,9 +115,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        if(view == buttonLogin){
+       /* if(view == buttonLogin){
 
-        }
+        }*/
 
         if (view == textViewSignUp){
             finish();

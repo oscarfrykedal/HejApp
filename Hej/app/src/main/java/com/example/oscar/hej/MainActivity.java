@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity{
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        //FirebaseUser user = firebaseAuth.getCurrentUser();
 
         profile_image = findViewById(R.id.profile_image);
         username = findViewById(R.id.username);
@@ -183,14 +183,32 @@ public class MainActivity extends AppCompatActivity{
 
         if (item.getItemId() == R.id.menu_settings);
         {
-
+            MenuIntent();
         }
+
         if (item.getItemId() == R.id.menu_logout);
         {
             mAuth.signOut();
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
+            LogoutIntent();
         }
         return true;
+
     }
+
+    private void MenuIntent()
+    {
+        Intent menu_intent = new Intent(MainActivity.this, SettingsActivity.class);
+        startActivity(menu_intent);
+
+    }
+
+    private void LogoutIntent()
+    {
+
+        Intent logout_intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(logout_intent);
+
+    }
+
+
 }
