@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +20,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.oscar.hej.Adapter.UserAdapter;
 import com.example.oscar.hej.GroupChatActivity;
 import com.example.oscar.hej.LoginActivity;
 import com.example.oscar.hej.R;
+import com.example.oscar.hej.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,8 +45,7 @@ import java.util.Set;
 public class GroupChatsFragment extends Fragment {
 
     private FloatingActionButton fab;
-    //private Button logoutButton;
-    //private RecyclerView recyclerView;
+    private RecyclerView recyclerView;
     private ListView listView;
 
     private View groupFragmentView;
@@ -50,19 +53,21 @@ public class GroupChatsFragment extends Fragment {
     private ArrayList<String> list_of_groups = new ArrayList<>();
 
     FirebaseUser fuser;
-    DatabaseReference GroupReference;
+    DatabaseReference GroupReference, reference;
+
+    private UserAdapter userAdapter;
+    private List<User> mUser;
 
     private List<String> userList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
 
         groupFragmentView = inflater.inflate(R.layout.fragment_groupchats,container, false);
-
         GroupReference = FirebaseDatabase.getInstance().getReference().child("Groups");
-
-
+        mUser = new ArrayList<>();
 
         InitializeFields();
 
@@ -80,14 +85,6 @@ public class GroupChatsFragment extends Fragment {
             }
         });
 
-        /*logoutButton = groupFragmentView.findViewById(R.id.button1);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });*/
 
         fab = groupFragmentView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -98,13 +95,9 @@ public class GroupChatsFragment extends Fragment {
             }
         });
 
-
         fuser = FirebaseAuth.getInstance().getCurrentUser();
 
         userList = new ArrayList<>();
-
-
-
 
         return groupFragmentView;
     }
@@ -146,12 +139,15 @@ public class GroupChatsFragment extends Fragment {
     }
 
 
-    private void RequestNewGroup() {
+    private void RequestNewGroup()
+    {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialog);
         builder.setTitle("Enter group name :");
 
+
+
         final EditText groupNameField = new EditText(getActivity());
-        groupNameField.setHint("e.g Family chat");
+        groupNameField.setHint("e.g Christmas plans");
         builder.setView(groupNameField);
 
         builder.setPositiveButton("Create", new DialogInterface.OnClickListener() {
@@ -165,6 +161,7 @@ public class GroupChatsFragment extends Fragment {
                 }
                 else
                 {
+
                     CreateNewGroup(groupName);
                 }
 

@@ -30,15 +30,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    {
         View view = LayoutInflater.from(mContext).inflate(R.layout.user_item, parent,false);
         return new UserAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position)
+    {
         final User user = mUser.get(position);
         holder.username.setText(user.getUsername());
         if (user.getImageURL().equals("default")){
@@ -58,11 +58,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
         return mUser.size();
     }
 
-    public  class ViewHolder extends  RecyclerView.ViewHolder{
+    public  class ViewHolder extends  RecyclerView.ViewHolder
+    {
 
         public TextView username;
         public ImageView profile_image;
@@ -72,7 +74,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
             username = itemView.findViewById(R.id.username);
             profile_image = itemView.findViewById(R.id.profile_image);
-        }
+         }
     }
 
 }

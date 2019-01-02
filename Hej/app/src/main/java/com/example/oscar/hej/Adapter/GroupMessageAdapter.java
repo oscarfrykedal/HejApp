@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.oscar.hej.Chat;
+import com.example.oscar.hej.GroupChat;
 import com.example.oscar.hej.GroupChatActivity;
 import com.example.oscar.hej.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,54 +18,50 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
+import static com.example.oscar.hej.Adapter.GroupMessageAdapter.MSG_TYPE_LEFT;
+import static com.example.oscar.hej.Adapter.GroupMessageAdapter.MSG_TYPE_RIGHT;
+
+public class GroupMessageAdapter extends RecyclerView.Adapter<GroupMessageAdapter.ViewHolder> {
 
     public static final  int MSG_TYPE_LEFT = 0;
     public static final  int MSG_TYPE_RIGHT = 1;
 
     private Context mContext;
-    private List<Chat> mChat;
-    private String imageurl;
+    private List<GroupChat> mChat;
+
 
 
     FirebaseUser fuser;
 
-    public MessageAdapter(Context mContext, List<Chat> mChat, String imageurl){
+
+    public GroupMessageAdapter(Context mContext, List<GroupChat> mChat) {
         this.mChat = mChat;
         this.mContext = mContext;
-        this.imageurl = imageurl;
+
 
     }
+
 
 
 
     @NonNull
     @Override
-    public MessageAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public GroupMessageAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == MSG_TYPE_RIGHT){
             View view = LayoutInflater.from(mContext).inflate(R.layout.chat_item_right, parent,false);
-            return new MessageAdapter.ViewHolder(view);
+            return new GroupMessageAdapter.ViewHolder(view);
         }else{
             View view = LayoutInflater.from(mContext).inflate(R.layout.chat_item_left, parent,false);
-            return new MessageAdapter.ViewHolder(view);
+            return new GroupMessageAdapter.ViewHolder(view);
         }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MessageAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Chat chat = mChat.get(position);
+        GroupChat groupchat = mChat.get(position);
 
-        holder.show_message.setText(chat.getMessage());
-
-/*
-        if (imageurl.equals("default")){
-            holder.profile_image.setImageResource(R.mipmap.ic_launcher);
-        }else{
-            Glide.with(mContext).load(imageurl).into(holder.profile_image);
-        }
-*/
-
+        holder.show_message.setText(groupchat.getMessage());
 
     }
 
@@ -90,12 +87,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @Override
     public int getItemViewType(int position) {
         fuser = FirebaseAuth.getInstance().getCurrentUser();
-        if (mChat.get(position).getSender().equals(fuser.getUid())){
+     /*   if (mChat.get(position).getSender().equals(fuser.getUid())){
             return MSG_TYPE_RIGHT;
-        }else{
+        }else{*/
             return MSG_TYPE_LEFT;
         }
-    }
+   // }
 }
 
 

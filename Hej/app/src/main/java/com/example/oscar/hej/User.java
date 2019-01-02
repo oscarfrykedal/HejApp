@@ -4,7 +4,7 @@ public class User {
 
     private String id;
     private String username;
-    private String imageURL;
+    public String imageURL;
 
 
     public User(String id, String username, String imageURL) {

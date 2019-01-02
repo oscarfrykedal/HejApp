@@ -40,7 +40,7 @@ public class UsersFragment extends Fragment {
     private UserAdapter userAdapter;
     private List<User> mUser;
 
-    //Switch aSwitch;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

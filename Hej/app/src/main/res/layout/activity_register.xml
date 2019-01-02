@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="User Registration"
                 android:textAlignment="center"
+                android:textColor="@android:color/background_dark"
                 tools:layout_editor_absoluteX="163dp"
                 tools:layout_editor_absoluteY="63dp" />
 
@@ -36,14 +37,19 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:hint="Enter username"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textColor="@android:color/background_dark"
+                android:textColorHint="@android:color/darker_gray" />
+
             <EditText
                 android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:hint="Enter email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textColor="@android:color/background_dark"
+                android:textColorHint="@android:color/darker_gray" />
 
 
             <EditText
@@ -52,21 +58,25 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:hint="Enter password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textColor="@android:color/background_dark"
+                android:textColorHint="@android:color/darker_gray" />
 
 
             <Button
                 android:id="@+id/buttonRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create Account " />
+                android:text="Create Account "
+                android:background="#ff9800"/>
 
             <TextView
                 android:id="@+id/textViewSignIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="already have an account? Login here"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="#e65100"/>
 
         </LinearLayout>
 

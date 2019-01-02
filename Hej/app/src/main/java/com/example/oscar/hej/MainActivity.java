@@ -178,21 +178,18 @@ public class MainActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
+        switch (item.getItemId()) {
+            case R.id.menu_settings:
+                MenuIntent();
+                return true;
+            case R.id.menu_logout:
 
-         super.onOptionsItemSelected(item);
-
-        if (item.getItemId() == R.id.menu_settings);
-        {
-            MenuIntent();
+                mAuth.signOut();
+                LogoutIntent();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        if (item.getItemId() == R.id.menu_logout);
-        {
-            mAuth.signOut();
-            LogoutIntent();
-        }
-        return true;
-
     }
 
     private void MenuIntent()

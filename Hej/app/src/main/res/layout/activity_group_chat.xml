@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GroupChatActivity">
+    tools:context=".GroupChatActivity"
+
+    >
 
 
         <include
@@ -14,14 +16,29 @@
 
         </include>
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/profile_image"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/username"
+        android:layout_marginLeft="25dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:layout_marginStart="25dp"
+        tools:ignore="RtlHardcoded" />
+
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recycler_view"
+        android:layout_above="@+id/myRelativeLayout"
         android:layout_below="@+id/toolbar_group_chat"
-        android:layout_above="@+id/bottom"
 
-        />
+        android:background="#ffffff" />
 
     <ScrollView
         android:id="@+id/my_scroll_view"
@@ -35,7 +52,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+<!--            <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@mipmap/ic_launcher"/>
@@ -67,7 +84,7 @@
                 android:id="@+id/show_message_right"
                 android:textSize="18sp"
                 android:textColor="#fff"
-                android:padding="8dp"/>
+                android:padding="8dp"/>-->
 
         </RelativeLayout>
     </ScrollView>
